@@ -16,5 +16,9 @@
         <url-pattern>/sanity</url-pattern>
     </servlet-mapping>
 
+    <listener>
+        <Listener-class>com.revature.potus.util.ContextLoaderListener</Listener-class>
+    </listener>
+
 </web-app>
 

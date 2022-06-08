@@ -10,6 +10,16 @@ import java.time.LocalDateTime;
 public class SanityServlet extends HttpServlet {
 
     @Override
+    public void init() throws ServletException {
+        System.out.println("[LOG] - SanityServlet instantiated");
+    }
+
+    @Override
+    public void destroy() {
+        super.destroy();
+    }
+
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         System.out.println("[LOG] - SanityServlet received a request at " + LocalDateTime.now());
