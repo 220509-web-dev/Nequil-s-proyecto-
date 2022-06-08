@@ -1,8 +1,12 @@
 package com.revature.potus.servlets;
 
+
+/*
+Servlets are classes that are made to handle web request to specifid endpoints that come into our web sever.
+ */
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.potus.models.AppUser;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

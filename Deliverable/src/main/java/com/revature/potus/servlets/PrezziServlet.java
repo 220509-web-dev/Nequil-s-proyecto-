@@ -13,16 +13,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet(
-
-        urlPatterns =  "/Prezzi",
-        loadOnStartup = 2,
-        initParams = {
-                @WebInitParam(name = "Prezzi-servlet-key", value = "user-servlet-value"),
-                @WebInitParam(name = "anaother-param", value = "another-value")
-        }
-
-)
+//@WebServlet(
+//
+//        urlPatterns =  "/Prezzi",
+//        loadOnStartup = 2,
+//        initParams = {
+//                @WebInitParam(name = "Prezzi-servlet-key", value = "user-servlet-value"),
+//                @WebInitParam(name = "anaother-param", value = "another-value")
+//        }
+//
+//)
 // annotation-based servlet registration
 public class PrezziServlet extends HttpServlet {
 
@@ -30,7 +30,12 @@ public class PrezziServlet extends HttpServlet {
       instantiated in this manner
      */
 
-    private final ObjectMapper mapper = new ObjectMapper();
+    private final ObjectMapper mapper;
+
+
+    public PrezziServlet(ObjectMapper mapper){
+        this.mapper = mapper;
+    }
 
 
     @Override
