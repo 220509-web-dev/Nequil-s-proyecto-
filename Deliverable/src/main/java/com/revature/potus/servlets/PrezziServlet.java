@@ -25,11 +25,6 @@ import java.io.IOException;
 //)
 // annotation-based servlet registration
 public class PrezziServlet extends HttpServlet {
-
-    /*this is bad practice, since we would need to create a new ObjectMapper for every servlet
-      instantiated in this manner
-     */
-
     private final ObjectMapper mapper;
 
 
@@ -49,6 +44,11 @@ public class PrezziServlet extends HttpServlet {
         resp.setContentType("application/json");//postman formats it in json
         resp.getWriter().write(respPayload);//get the writer for the repsonse and write our payload ot the response and send it back
 
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.getWriter().write("/prezzi POST works");
     }
 }
 

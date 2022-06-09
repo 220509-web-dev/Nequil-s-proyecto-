@@ -5,8 +5,6 @@ import java.util.Objects;
 public class AppUser {
 
     private int id;
-    private String lastName;
-    private String email;
     private String username;
     private String password;
 
@@ -16,8 +14,6 @@ public class AppUser {
 
     public AppUser(int id, String username, String password) {
         this.id = id;
-//        this.lastName = lastName;
-//        this.email = email;
         this.username = username;
         this.password = password;
     }
@@ -26,36 +22,20 @@ public class AppUser {
         return id;
     }
 
-//    public String getLastName() {
-//        return lastName;
-//    }
-
-//    public String getEmail() {
-//        return email;
-//    }
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-//    public void setLastName(String lastName) {
-//        this.lastName = lastName;
-//    }
-
-//    public void setEmail(String email) {
-//        this.email = email;
-//    }
-
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public void setPassword(String password) {
@@ -83,4 +63,5 @@ public class AppUser {
                 ", password='" + password + '\'' +
                 '}';
     }
+
 }

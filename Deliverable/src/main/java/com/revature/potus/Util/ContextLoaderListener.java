@@ -37,10 +37,7 @@ public class ContextLoaderListener implements ServletContextListener { // creati
 
         ServletContext context = sce.getServletContext();
         context.addServlet("PrezziServlet", prezziServlet).addMapping("/prezzi/*");
-        ServletRegistration.Dynamic registeredServlet = context.addServlet("UserServlet", userServlet);
-        registeredServlet.setLoadOnStartup(3);
-        registeredServlet.setInitParameter("user-servlet-key", "user-servlet-value");
-        registeredServlet.setInitParameter("another-param", "another-value");
+        context.addServlet("UserServlet", userServlet).addMapping("/users/*");
     }
 
     @Override

@@ -31,13 +31,12 @@ public class UserServlet extends HttpServlet {
 
     @Override  //allows you to get users
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //This value would actually come from some data source
-//        AppUser someUser = new AppUser(999,"Ronald","Jeferson", "aanderson@revature.com","password");
+//        This value would actually come from some data source
+        AppUser someUser = new AppUser(999,"aanderson","password");
 
-                //ObjectMapper mapper = new ObjectMapper(); // we have some user
-////                String respPayload = mapper.writeValueAsString(someUser); //we turn it into a json string
-//                resp.setContentType("application/json");//prints it out in json format
-//                resp.getWriter().write(respPayload); //we write it to the response body and then send it on its way back out
+        String respPayload = mapper.writeValueAsString(someUser); //we turn it into a json string
+        resp.setContentType("application/json");//prints it out in json format
+        resp.getWriter().write(respPayload); //we write it to the response body and then send it on its way back out
 
     }
 
@@ -54,7 +53,15 @@ public class UserServlet extends HttpServlet {
 
         try {
             AppUser newUser = mapper.readValue(req.getInputStream(), AppUser.class);
-            System.out.println(newUser);
+            System.out.println(newUser); // do something with this user obtained from the request
+
+            // did the requester send  a valid user?
+            /*
+                What is a valid user?
+                  - has a non-null or empty username
+                  - has a non-null or empty password
+                  - username is unique in the database
+             */
         } catch (Exception e) {
             e.printStackTrace();
         }
