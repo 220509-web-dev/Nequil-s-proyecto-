@@ -5,13 +5,15 @@ import com.revature.potus.models.AppUser;
 import daos.UserDao;
 import daos.UserDaoPostgres;
 
+import java.sql.SQLException;
 import java.sql.SQLOutput;
+import java.util.List;
 
 public class main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
 
-        System.out.println(ConnectionUtil.getConnection());
+        System.out.println(ConnectionUtil.getInstance());
 
         UserDaoPostgres userDao = new UserDaoPostgres();
 
@@ -21,11 +23,12 @@ public class main {
 //        userDao.createUser(puser);
 //        System.out.println(puser);
 
+//
+//        AppUser abuser = userDao.getUserById(2);
+//        System.out.println(abuser);
 
-        AppUser abuser = userDao.getUserById(2);
-        System.out.println(abuser);
-
-
+    List<AppUser> allusers = userDao.getAllUsers();
+        System.out.println(allusers);
 
 
 

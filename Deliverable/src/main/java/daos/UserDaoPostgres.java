@@ -3,14 +3,19 @@ package daos;
 import com.revature.potus.Util.ConnectionUtil;
 import com.revature.potus.models.AppUser;
 
+import javax.xml.transform.Result;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
-public class UserDaoPostgres implements UserDao{
+public class UserDaoPostgres implements UserDao {
+    public UserDaoPostgres() throws SQLException {
+    }
+
     @Override
     public AppUser createUser(AppUser user) {
 
-        try(Connection conn = ConnectionUtil.getConnection()){
+        try (Connection conn = ConnectionUtil.getInstance().getConnection()) {
 
             String sql = "insert into pusers values (default,?,?)";
             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -35,10 +40,10 @@ public class UserDaoPostgres implements UserDao{
 
     @Override
     public AppUser getUserById(int id) {
-        try(Connection conn = ConnectionUtil.getConnection()){
+        try (Connection conn = ConnectionUtil.getInstance().getConnection()) {
             String sql = "select * from pusers where id = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1,id);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
 
             rs.next();
@@ -66,6 +71,28 @@ public class UserDaoPostgres implements UserDao{
 
     @Override
     public List<AppUser> getAllUsers() {
-        return null;
+
+        List<AppUser> todousers = new ArrayList<>();
+
+        try (Connection conn = ConnectionUtil.getInstance().getConnection()) {
+            String sql = "select * from pusers";
+            PreparedStatement query = conn.prepareStatement(sql);
+            ResultSet rs = query.executeQuery();
+
+
+            while (rs.next()) {
+                AppUser tuser = new AppUser();
+                tuser.setId(rs.getInt("id"));
+                tuser.setUsername(rs.getString("username"));
+                tuser.setPassword(rs.getString("password"));
+                todousers.add(tuser);
+            }
+        } catch (SQLException e) {
+            System.err.println("An error occurred with FlashcardDAO");
+        }
+        return todousers;
+
     }
+
+
 }
