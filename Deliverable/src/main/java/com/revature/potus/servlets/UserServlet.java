@@ -32,12 +32,12 @@ public class UserServlet extends HttpServlet {
     @Override  //allows you to get users
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //This value would actually come from some data source
-        AppUser someUser = new AppUser(999,"Ronald","Jeferson", "aanderson@revature.com","password");
+//        AppUser someUser = new AppUser(999,"Ronald","Jeferson", "aanderson@revature.com","password");
 
                 //ObjectMapper mapper = new ObjectMapper(); // we have some user
-                String respPayload = mapper.writeValueAsString(someUser); //we turn it into a json string
-                resp.setContentType("application/json");//prints it out in json format
-                resp.getWriter().write(respPayload); //we write it to the response body and then send it on its way back out
+////                String respPayload = mapper.writeValueAsString(someUser); //we turn it into a json string
+//                resp.setContentType("application/json");//prints it out in json format
+//                resp.getWriter().write(respPayload); //we write it to the response body and then send it on its way back out
 
     }
 

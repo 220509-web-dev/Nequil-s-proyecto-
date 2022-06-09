@@ -17,7 +17,7 @@
     </servlet-mapping>
 
     <listener>
-        <Listener-class>com.revature.potus.util.ContextLoaderListener</Listener-class>
+        <Listener-class>com.revature.potus.Util.ContextLoaderListener</Listener-class>
     </listener>
 
 </web-app>

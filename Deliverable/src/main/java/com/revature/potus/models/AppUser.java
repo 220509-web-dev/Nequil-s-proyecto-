@@ -14,10 +14,10 @@ public class AppUser {
     public AppUser() {
     }
 
-    public AppUser(int id, String lastName, String email, String username, String password) {
+    public AppUser(int id, String username, String password) {
         this.id = id;
-        this.lastName = lastName;
-        this.email = email;
+//        this.lastName = lastName;
+//        this.email = email;
         this.username = username;
         this.password = password;
     }
@@ -26,13 +26,13 @@ public class AppUser {
         return id;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
+//    public String getLastName() {
+//        return lastName;
+//    }
 
-    public String getEmail() {
-        return email;
-    }
+//    public String getEmail() {
+//        return email;
+//    }
 
     public String getUsername() {
         return username;
@@ -46,13 +46,13 @@ public class AppUser {
         this.id = id;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+//    public void setLastName(String lastName) {
+//        this.lastName = lastName;
+//    }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+//    public void setEmail(String email) {
+//        this.email = email;
+//    }
 
     public void setUsername(String username) {
         this.username = username;
@@ -67,20 +67,18 @@ public class AppUser {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AppUser appUser = (AppUser) o;
-        return id == appUser.id && Objects.equals(lastName, appUser.lastName) && Objects.equals(email, appUser.email) && Objects.equals(username, appUser.username) && Objects.equals(password, appUser.password);
+        return id == appUser.id && Objects.equals(username, appUser.username) && Objects.equals(password, appUser.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, lastName, email, username, password);
+        return Objects.hash(id, username, password);
     }
 
     @Override
     public String toString() {
         return "AppUser{" +
                 "id=" + id +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
