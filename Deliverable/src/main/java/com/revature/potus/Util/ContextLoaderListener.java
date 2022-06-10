@@ -12,8 +12,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.potus.filters.FilterFish;
 import com.revature.potus.servlets.PrezziServlet;
 import com.revature.potus.servlets.UserServlet;
+import daos.UserDaoPostgres;
 
 import javax.servlet.*;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.EnumSet;
 
@@ -28,8 +30,24 @@ public class ContextLoaderListener implements ServletContextListener { // creati
 
         ObjectMapper mapper = new ObjectMapper();
         //both of these Servlet are using the same Object mapper.
-        PrezziServlet prezziServlet = new PrezziServlet(mapper);
-        UserServlet userServlet = new UserServlet(mapper);// instantiates it yourself and it only requires a mapper
+        UserDaoPostgres userDao;
+        try {
+            userDao = new UserDaoPostgres();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        PrezziServlet prezziServlet;
+        try {
+            prezziServlet = new PrezziServlet(mapper);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        UserServlet userServlet;// instantiates it yourself and it only requires a mapper
+        try {
+            userServlet = new UserServlet(mapper);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         /*Created the server but it's still not registered with the container; to register it with the container we're
         going to obtain the context form the ServletContext class

@@ -38,6 +38,10 @@ public class UserDaoPostgres implements UserDao {
 
     }
 
+
+
+
+
     @Override
     public AppUser getUserById(int id) {
         try (Connection conn = ConnectionUtil.getInstance().getConnection()) {
@@ -51,6 +55,27 @@ public class UserDaoPostgres implements UserDao {
             AppUser user = new AppUser();
             user.setId(id);
             user.setUsername(rs.getString("username"));
+            user.setPassword(rs.getString("password"));
+            return user;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    public AppUser getUserByUser(String username) {
+        try (Connection conn = ConnectionUtil.getInstance().getConnection()) {
+            String sql = "select * from pusers where username = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+
+            rs.next();
+
+            AppUser user = new AppUser();
+            user.setId(rs.getInt("id"));
+            user.setUsername(username);
             user.setPassword(rs.getString("password"));
             return user;
 

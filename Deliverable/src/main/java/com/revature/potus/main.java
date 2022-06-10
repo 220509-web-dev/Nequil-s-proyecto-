@@ -27,10 +27,11 @@ public class main {
 //        AppUser abuser = userDao.getUserById(2);
 //        System.out.println(abuser);
 
-    List<AppUser> allusers = userDao.getAllUsers();
-        System.out.println(allusers);
+//    List<AppUser> allusers = userDao.getAllUsers();
+//        System.out.println(allusers);
 
-
+    AppUser getteruser = userDao.getUserByUser("Thomas");
+        System.out.println(getteruser);
 
     }
 }
